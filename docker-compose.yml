@@ -1,0 +1,27 @@
+services:
+  # Smart EV Charging Controller
+  smart-charging:
+    build: .
+    container_name: smart-charging
+    environment:
+      - COMED_API_KEY=${COMED_API_KEY:-}
+      - MQTT_HOST=mosquitto
+      - MQTT_PORT=1883
+      - VEHICLE_VIN=${VEHICLE_VIN}
+      - CHARGE_PRICE_THRESHOLD_CENTS=${CHARGE_PRICE_THRESHOLD_CENTS:-5.0}
+      - MIN_CHARGE_LEVEL=${MIN_CHARGE_LEVEL:-20}
+      - MAX_CHARGE_LEVEL=${MAX_CHARGE_LEVEL:-90}
+      - CHECK_INTERVAL_SECONDS=${CHECK_INTERVAL_SECONDS:-300}
+      - SMTP_SERVER=${SMTP_SERVER:-smtp.gmail.com}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - EMAIL=${EMAIL:-}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD:-}
+      - PHONE_NUMBER=${PHONE_NUMBER:-}
+      - CARRIER_GATEWAY=${CARRIER_GATEWAY:-txt.att.net}
+    networks:
+      - ev-network
+    restart: unless-stopped
+
+networks:
+  ev-network:
+    external: true
