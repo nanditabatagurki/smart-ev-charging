@@ -1,7 +1,24 @@
-# Smart EV Charging Controller 🚗⚡
+# Smart EV Charging Controller ⚡🚗
 
-Automatically control your EV charging based on real-time ComEd electricity pricing. Save money by charging when prices are low!
+> Automatically charge your EV when electricity is cheap — real-time ComEd pricing + OnStar MQTT integration, fully containerized in Docker.
 
+📖 **Full writeup:** https://medium.com/@nandu810/i-was-too-lazy-to-check-electricity-prices-now-my-car-charges-itself-when-electricity-is-cheap-51a22dea9938
+
+
+## What It Does
+
+ComEd's hourly electricity prices swing from 2¢ to 20¢+ per kWh throughout the day.
+This system monitors those prices every 5 minutes and automatically starts or stops
+charging your GM/Chevy EV — no manual intervention needed.
+
+- 💰 Fetches real-time ComEd pricing every 5 minutes
+- 🔋 Monitors battery level via MQTT from your vehicle
+- ⚡ Starts charging when price drops below your threshold (default: 3¢/kWh)
+- 🛑 Stops charging when price climbs back up
+- 📱 Texts you only when it takes action
+- 🐳 Runs 24/7 in Docker — set it and forget it
+
+---
 ## Overview
 
 This system monitors ComEd's hourly electricity pricing and intelligently controls your EV charging through OnStar/MyGMC:
